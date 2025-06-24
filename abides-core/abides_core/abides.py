@@ -55,6 +55,7 @@ def run(
     sim_start_time = dt.datetime.now()
 
     logger.info(f"Simulation Start Time: {sim_start_time}")
+    logger.debug(f"Testing Logger DEBUG")
 
     end_state = kernel.run()
 

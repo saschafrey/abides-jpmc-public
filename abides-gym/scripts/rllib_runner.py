@@ -27,7 +27,7 @@ register_env(
 )
 
 ray.shutdown()
-ray.init(num_cpus=10)
+ray.init(num_cpus=4)
 
 """
 PPO's default:
@@ -46,31 +46,31 @@ tune.run(
     checkpoint_at_end=True,
     checkpoint_freq=20,
     config={
-        "callbacks": MyCallbacks,
+        "callbacks": None,
         "env": "markets-execution-v0",
         "env_config": {
             "mkt_close": "16:00:00",
-            "timestep_duration": tune.grid_search(["30S", "60S"]),
-            "execution_window": tune.grid_search(["01:00:00", "00:30:00"]),
-            "parent_order_size": tune.grid_search([10000, 20000, 30000]),
-            "order_fixed_size": tune.grid_search([200, 500, 1000]),
+            "timestep_duration": tune.grid_search(["1S"]),
+            "execution_window": tune.grid_search(["01:00:00"]),
+            "parent_order_size": tune.grid_search([10000]),
+            "order_fixed_size": tune.grid_search([200]),
             "not_enough_reward_update": tune.grid_search([0, -100]),
-            "oracle_parameters": {
-                "l_1": tune.grid_search([-100, 0, 100]),
-                "sin_amp": tune.grid_search(
-                    [
-                        0,
-                        100,
-                    ]
-                ),
-                "sin_freq": tune.grid_search([2, 10, 50]),
-                "l_2": tune.grid_search([0, -100]),
-                "sigma": tune.grid_search([0, 50]),
-            },
+            # "oracle_parameters": {
+            #     "l_1": tune.grid_search([-100, 0, 100]),
+            #     "sin_amp": tune.grid_search(
+            #         [
+            #             0,
+            #             100,
+            #         ]
+            #     ),
+            #     "sin_freq": tune.grid_search([2, 10, 50])
+            #     "l_2": tune.grid_search([0, -100]),
+            #     "sigma": tune.grid_search([0, 50]),
+            # },
         },
         "seed": tune.grid_search([1, 2, 3]),
-        "num_gpus": 0,
-        "num_workers": 0,
+        "num_gpus": 1,
+        "num_workers": 4,
         "hiddens": [50, 20],
         "gamma": 1,
         "lr": 0.0001,
