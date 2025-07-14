@@ -116,8 +116,8 @@ def build_config(
     MKT_OPEN = DATE + str_to_ns("09:30:00")
     MKT_CLOSE = DATE + str_to_ns(end_time)
     # These times needed for distribution of arrival times of Noise Agents
-    NOISE_MKT_OPEN = MKT_OPEN - str_to_ns("09:30:00")
-    NOISE_MKT_CLOSE = DATE + str_to_ns(end_time)
+    NOISE_MKT_OPEN = MKT_OPEN - str_to_ns("00:30:00")
+    NOISE_MKT_CLOSE = DATE + str_to_ns("16:00:00")
 
     # oracle
     symbols = {

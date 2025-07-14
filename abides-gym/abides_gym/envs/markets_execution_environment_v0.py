@@ -137,6 +137,7 @@ class SubGymMarketsExecutionEnv_v0(AbidesGymMarketsEnv):
         ##################
         # CHECK PROPERTIES
         assert background_config in [
+            "rmsc05",
             "rmsc03",
             "rmsc04",
             "smc_01",

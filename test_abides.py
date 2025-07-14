@@ -25,7 +25,7 @@ if gym_abides:
     env.seed(0)
     initial_state = env.reset()
 
-    num_steps = 1000
+    num_steps = 10000
     start_time = time.time()
 
     logger = logging.getLogger("abides")
