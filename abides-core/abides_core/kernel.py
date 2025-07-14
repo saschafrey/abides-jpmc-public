@@ -271,6 +271,7 @@ class Kernel:
         # Track starting wall clock time and total message count for stats at the end.
         self.event_queue_wall_clock_start = datetime.now()
         self.ttl_messages = 0
+        self.ttl_orders = 0
 
     def runner(
         self, agent_actions: Optional[Tuple[Agent, List[Dict[str, Any]]]] = None
@@ -329,6 +330,8 @@ class Kernel:
                 )
 
             self.ttl_messages += 1
+            if "OrderMsg" in message.type():
+                self.ttl_orders += 1
 
             # In between messages, always reset the current_agent_additional_delay.
             self.current_agent_additional_delay = 0
