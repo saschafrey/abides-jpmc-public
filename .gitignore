@@ -156,3 +156,12 @@ cython_debug/
 
 wandb/
 log/
+
+.vscode*/*
+ray_results/*
+.gnupg*
+.dotnet*
+.local*
+.ssh
+.netrc*
+.bash_history
